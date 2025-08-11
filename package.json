@@ -1,0 +1,23 @@
+{
+  "name": "workspace",
+  "version": "1.0.0",
+  "main": "scrape-images.js",
+  "scripts": {
+    "test": "echo \"Error: no test specified\" && exit 1"
+  },
+  "repository": {
+    "type": "git",
+    "url": "git+https://github.com/OlimSadullaev/RestaurantMenu.git"
+  },
+  "keywords": [],
+  "author": "",
+  "license": "ISC",
+  "bugs": {
+    "url": "https://github.com/OlimSadullaev/RestaurantMenu/issues"
+  },
+  "homepage": "https://github.com/OlimSadullaev/RestaurantMenu#readme",
+  "description": "",
+  "dependencies": {
+    "puppeteer": "^24.16.1"
+  }
+}
