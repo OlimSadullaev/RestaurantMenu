@@ -23,17 +23,23 @@ jobs:
           submodules: true
           lfs: false
 
-      # ✅ This step ensures Node 20 is used
-      - name: Use Node.js 20
+      # ✅ Ensure Node 22 is used for install/build
+      - name: Use Node.js 22
         uses: actions/setup-node@v4
         with:
-          node-version: 20
+          node-version: 22.x
+
+      - name: Install dependencies and build (restaurant-app)
+        working-directory: restaurant-app
+        run: |
+          npm ci
+          npm run build
 
       - name: Install OIDC Client from Core Package
         run: npm install @actions/core@1.6.0 @actions/http-client
 
       - name: Get Id Token
-        uses: actions/github-script@v6
+        uses: actions/github-script@v7
         id: idtoken
         with:
            script: |
@@ -49,7 +55,8 @@ jobs:
           action: "upload"
           app_location: "./restaurant-app" # App source code path
           api_location: "" # Api source code path - optional
-          output_location: "build" # Built app content directory - optional
+          output_location: "dist" # Built app content directory relative to app_location
+          skip_app_build: true
           github_id_token: ${{ steps.idtoken.outputs.result }}
 
   close_pull_request_job:
